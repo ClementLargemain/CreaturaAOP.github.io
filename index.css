@@ -4,6 +4,8 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
 }
 
 #background {
@@ -21,17 +23,18 @@ body {
 #foreground {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
 }
 
 #foreground img {
-    size: cover;
-    position: center;
     height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-width: 300%; /* Ensure the image always fills the container horizontally */
+    max-width: 300%; 
 }
 
 #curtain_foreground {
@@ -59,27 +62,31 @@ body {
 }
 
 #countdown {
-    font-size: 2em;
-    margin: 0 20px;
+    font-size: 3em; /* Increase font size for LED effect */
+    color: black; /* Set font color to black */
+    background-color: white; /* Add white background behind the timer */
+    padding: 20px; /* Add padding to create space around the timer */
+    border-radius: 10px; /* Add rounded corners to the timer */
 }
 
 .image-container {
     width: 400px;
-    height: 400px;
+    height: auto;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
 .image-container-reversed {
     width: 400px;
-    height: 400px;
+    height: auto;
     position: relative;
     z-index: 1;
 }
 
 .image-container img {
     width: 100%;
-    height: 100%;
+    height: auto;
     animation: rotateCow 1s infinite alternate;
 }
 
@@ -95,7 +102,7 @@ body {
 
 .image-container-reversed img {
     width: 100%;
-    height: 100%;
+    height: auto;
     animation: rotateCow-reversed 1s infinite alternate;
 }
 
@@ -106,5 +113,33 @@ body {
 
     100% {
         transform: scaleX(-1) rotate(10deg);
+    }
+}
+
+#ski-cow {
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Automatically adjust height based on width */
+    animation: ski-cow-animation 2s steps(1)infinite;
+    filter: blur(1px); /* Adjust the blur amount as needed */
+}
+
+@keyframes ski-cow-animation {
+    0% { transform: translateY(0) scaleX(1) rotate(-5deg); }
+    12.5% { transform: translateY(-10px) scaleX(1) rotate(5deg); }
+    25% { transform: translateY(0) scaleX(1) rotate(-5deg); }
+    37.5% { transform: translateY(-10px) scaleX(1) rotate(5deg); }
+    50% { transform: translateY(0) scaleX(-1) rotate(-5deg); }
+    62.5% { transform: translateY(-10px) scaleX(-1) rotate(5deg); }
+    75% { transform: translateY(0) scaleX(-1) rotate(-5deg); }
+    87.5% { transform: translateY(-10px) scaleX(-1) rotate(5deg); }
+    100% { transform: translateY(0) scaleY(1) rotate(-5deg); }
+}
+
+@media screen and (max-width: 768px) {
+    .image-container {
+        display: none;
     }
 }
